@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'bundler'
+require 'review'
 
 Bundler.require
 
