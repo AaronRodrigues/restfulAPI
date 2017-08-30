@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'sinatra/json'
 require 'bundler'
 
 Bundler.require
@@ -19,4 +20,14 @@ get '/reviews' do
   reviews.to_json
 end
 
+post '/reviews' do
+  content_type :json
 
+  review = Review.new params[:review]
+  if review.save
+    status 201
+  else
+    status 500
+    json review.errors.full_messages
+  end
+end
